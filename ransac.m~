@@ -1,13 +1,10 @@
-function [ bestVp, bestIn, bestOut ] = ransac(lines)
-iterNum =1000;
+function [ bestVp ] = ransac(lines)
+iterNum =5000;
 bestVp = 0;
-
 for p = 1:iterNum
     numInliers = 0;
     line1 = 0;
     line2 = 0;
-    inliers = [];
-    outliers = [];
     while(line1 == line2)
         line1 = randi(length(lines));
         line2 = randi(length(lines));
@@ -26,18 +23,16 @@ for p = 1:iterNum
     vp = vp/vp(3);
     
     for i = 1:length(lines)
-        if (getVPDist(lines(i,:),vp) < 20)
+        if (getVPDist(lines(i,:),vp) < 30)
             numInliers = numInliers+1;
-            inliers = [inliers; i];
+            inliers(i) = lines(i,:)
         else
-            outliers = [outliers; i];
+            
         end
     end
     
     if (numInliers > bestVp)
         bestVp = vp;
-        bestIn = inliers;
-        bestOut = outliers;
     end
 end
 end
