@@ -26,8 +26,8 @@ for p = 1:iterNum
     vp = vp/vp(3);
     
     for i = 1:length(lines)
-        if (getVPDist(lines(i,:),vp) < 20)
-            numInliers = numInliers+1;
+        if (getVPDist(lines(i,:),vp) < 10)
+            numInliers = numInliers+ 1;
             inliers = [inliers; i];
         else
             outliers = [outliers; i];
