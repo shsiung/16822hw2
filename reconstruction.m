@@ -1,0 +1,14 @@
+clc;
+I1 = imread('images/input/2_001.jpg');
+I2 = imread('images/input/2_002.jpg');
+i1 = rgb2gray(I1);
+i2 = rgb2gray(I2);
+points1 = corner(i1,'MinimumEigenvalue',5000);
+points2 = corner(i2,'MinimumEigenvalue',5000);
+[features1, valid_points1] = extractFeatures(i1, points1);
+[features2, valid_points2] = extractFeatures(i2, points2);
+indexPairs = matchFeatures(features1, features2);
+matchedPoints1 = valid_points1(indexPairs(:, 1), :);
+matchedPoints2 = valid_points2(indexPairs(:, 2), :);
+ax = axes;
+showMatchedFeatures(I1,I2,matchedPoints1,matchedPoints2,'montage','Parent',ax);
