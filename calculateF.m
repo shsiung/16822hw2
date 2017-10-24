@@ -1,5 +1,4 @@
 function [ bestF, bestErr, bestEpipole] = calculateF( pt1, pt2, H)
-
 iterNum = 500;
 bestErr = 100*length(pt1);
 for p = 1:iterNum
@@ -25,5 +24,4 @@ for p = 1:iterNum
         bestEpipole = e;
     end
 end
-
 end

@@ -5,7 +5,7 @@ img = imread(filename);
 dogimg = dog(img);
 % get lines
 img_gray = rgb2gray(dogimg);
-lines = APPgetLargeConnectedEdges(img_gray, 0.02*sqrt(size(img_gray,1)^2 + size(img_gray,2)^2));
+lines = APPgetLargeConnectedEdges(img_gray, 0.03*sqrt(size(img_gray,1)^2 + size(img_gray,2)^2));
 
 if graph == true
     figure(1), hold off, imshow(img)

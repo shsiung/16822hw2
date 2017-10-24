@@ -3,7 +3,7 @@ iterNum =200;
 bestVp = 0;
 bestIn = [];
 bestOut = [];
-while(length(bestOut) >= length(bestIn))
+% while(length(bestOut) >= length(bestIn))
     bestOut = [];
     bestIn = [];
     bestVp = 0;
@@ -31,7 +31,7 @@ while(length(bestOut) >= length(bestIn))
         vp = vp/vp(3);
 
         for i = 1:length(lines)
-            if (getVPDist(lines(i,:),vp) < 1)
+            if (getVPDist(lines(i,:),vp) < 2)
                 numInliers = numInliers+ 1;
                 inliers = [inliers; i];
             else
@@ -45,5 +45,5 @@ while(length(bestOut) >= length(bestIn))
             bestOut = outliers;
         end
     end
-end
+% end
 end
