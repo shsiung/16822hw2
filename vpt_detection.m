@@ -105,9 +105,7 @@ if graph == true
 
 end
 
-VP = [pt1;
-      pt2;
-      pt3];
+VP = [pt1 pt2 pt3];
 group1 = lines1(in1,:);
 group2 = lines2(in2,:);
 group3 = lines3(in3,:);
