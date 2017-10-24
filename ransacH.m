@@ -25,7 +25,7 @@ for p = 1:iterNum
         match_pt = H*[matchedPoints1(i,:) 1]';
         match_pt = match_pt/match_pt(3);
         pt = matchedPoints2(i,:);
-        if (sqrt((match_pt(1)-pt(1))^2 + (match_pt(2)-pt(2))^2) < 1)
+        if (sqrt((match_pt(1)-pt(1))^2 + (match_pt(2)-pt(2))^2) < 3)
             inliers1 = [inliers1; 
                              matchedPoints1(i,:)];
             inliers2 = [inliers2; 

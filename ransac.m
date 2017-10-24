@@ -31,7 +31,7 @@ bestOut = [];
         vp = vp/vp(3);
 
         for i = 1:length(lines)
-            if (getVPDist(lines(i,:),vp) < 2)
+            if (getVPDist(lines(i,:),vp) < 1)
                 numInliers = numInliers+ 1;
                 inliers = [inliers; i];
             else
