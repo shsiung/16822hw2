@@ -1,9 +1,5 @@
 %% get image
 function [VP,group1,group2,group3] = vpt_detection(filename, graph)
-
-clf;
-clc;
-close all;
 img = imread(filename);
 
 dogimg = dog(img);
