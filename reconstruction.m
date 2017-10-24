@@ -34,12 +34,16 @@ planes2 = inliers_pt11;
 K1 = convhull(planes2(:,1),planes2(:,2));
 
 [rectI] = applyH(I1, H);
+matched1 = [inliers_pt1; inliers_pt11];
+matched2 = [inliers_pt2; inliers_pt22];
 
 [ F, Ferr, epipole ] = calculateF( [inliers_pt11], [inliers_pt22], H);
 fprintf('Best Err: %f\n', Ferr);
 
 
-    
+P = [eye(3), zeros(3,1)];
+P1 = [skewsym3(epipole)*F, epipole];
+worldPoints = triangulate(matched1,matched2,P',P1');
 
 %% Plotting
 figure(2);

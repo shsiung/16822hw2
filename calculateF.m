@@ -13,9 +13,7 @@ for p = 1:iterNum
     e2 = cross(H*[pts1(1,:) 1]',[pts2(2,:) 1]');
     e = cross(e1,e2);
     e = e./e(3);
-    F=[0 -e(3) e(2) ; 
-       e(3) 0 -e(1) ; 
-       -e(2) e(1) 0 ] * H;
+    F=skewsym3(e) * H;
     F=F./F(3,3);
     
     err1 = [pt2'; ones(1,length(pt2))]'*F*[pt1';ones(1,length(pt1))];
