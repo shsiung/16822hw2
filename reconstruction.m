@@ -92,9 +92,6 @@ g2 = g2(ind2);
 b2 = I1(:,:,3);
 b2 = b2(ind2);
 
-[imPlane1W, ~] = triangulate(imCoordP1(:,1:2),imCoordP12(:,1:2),M1',M2');
-[imPlane2W, ~] = triangulate(imCoordP2(:,1:2),imCoordP22(:,1:2),M1',M2');
-
 figure(6)
 subplot(1,3,1)
 plot3(worldP(:,1), worldP(:,2), worldP(:,3),'.','MarkerSize',20);

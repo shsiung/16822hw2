@@ -1,9 +1,17 @@
-%% get image
+% Vanishing Point Detection:
+%   Input: filename (ex. 'images/input/1_001.jpg')
+%          graph (true/false): to plot the results
+%   Output: VP: (three vanishing points. (2x3 matrix)
+%           group1: lines corresponding to vanishing point 1
+%           group2: lines corresponding to vanishing point 2
+%           group3: lines corresponding to vanishing point 3
+%
+% To run: >> [VP,gp1,gp2,gp3] = vpt_detection('images/input/1_001.jpg',true);
 function [VP,group1,group2,group3] = vpt_detection(filename, graph)
 img = imread(filename);
 
+% Applying difference of Gaussian
 dogimg = dog(img);
-% get lines
 img_gray = rgb2gray(dogimg);
 lines = APPgetLargeConnectedEdges(img_gray, 0.03*sqrt(size(img_gray,1)^2 + size(img_gray,2)^2));
 
@@ -11,7 +19,7 @@ if graph == true
     figure(1), hold off, imshow(img)
 end
 
-%% group lines
+%% group lines into 3 groups
 n_line_group = 3;
 kmeans_lines = lines(:,[5 6]);
 idx = kmeans(kmeans_lines,n_line_group);
@@ -26,7 +34,7 @@ if graph == true
     figure(2), hold on, plot(lines3(:, [1 2])', lines3(:, [3 4])','b','LineWidth',3);
 end
 
-% %% ransac 
+%% RANSAC to find the three vanishing points
     fprintf('process 1...');
     [pt1, in1, out1] = ransac(lines1);
     fprintf('done\n');
@@ -101,6 +109,7 @@ if graph == true
 
 end
 
+%% Assigning outputs
 VP = [pt1 pt2 pt3];
 group1 = lines1(in1,:);
 group2 = lines2(in2,:);
